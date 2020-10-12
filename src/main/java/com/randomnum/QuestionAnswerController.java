@@ -47,11 +47,11 @@ public class QuestionAnswerController {
         	StringTokenizer result = new StringTokenizer(responses, "*");
         	int count = result.countTokens();
         	 for (int i = 0; i <count; i++) {
-        		 if(count==0)
+        		 if(i==0)
         			 expectedQuestion = result.nextToken();
-        		 else if(count==1)
+        		 else if(i==1)
         			 expectedAnswer = result.nextToken();
-        		 else
+        		 else if(i==2)
         			 timestamp = Long.parseLong(result.nextToken());
         	 } 
         	 if (expectedQuestion.equals(question) && expectedAnswer.equals(answer) &&
