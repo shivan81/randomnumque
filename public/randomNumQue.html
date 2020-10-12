@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Random Number Question</title>
+</head>
+<body>
+	<form id="form" action="/" method="GET">
+		<table>
+			<input id="responses" type="text" name="responses" value="" hidden="true"/>
+			<tr><td>Question</td><td><input id="question" type="text" name="question" value="" size="30"/><br/></td></tr>
+			<tr><td>Answer</td><td><input type="text" name="answer" value="" size="30"/><br/></td></tr>
+		</table>
+		<input type="submit"/>
+	</form>
+<script>
+var xmlHttpRequest = new XMLHttpRequest();
+xmlHttpRequest.onload = function(e) {
+	var json = JSON.parse(xmlHttpRequest.responseText);
+	var elementsList = document.getElementById("form").elements;
+	elementsList.namedItem("responses").value = json.responses;
+	elementsList.namedItem("question").value = json.question;
+}
+xmlHttpRequest.open('POST', '/', true);
+xmlHttpRequest.send();
+</script>
+</body>
+</html>
