@@ -54,7 +54,6 @@ function validateCaptcha() {
   event.preventDefault();
   debugger
   if (document.getElementById("cpatchaTextBox").value == code) {
-    alert("Valid Captcha")
      document.getElementById("questionAnswerform").submit();
   }else{
     alert("Invalid Captcha. try Again");
