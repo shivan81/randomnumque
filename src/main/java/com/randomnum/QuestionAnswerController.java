@@ -17,9 +17,6 @@ public class QuestionAnswerController {
     
     private final Random random = new Random();
 
-//    private final int TIMEOUT = 5 * 60 * 1000;
-    private final int TIMEOUT = 1 * 60 * 1000;
-
     private int generateRandomNumber() {
         return random.nextInt(10) + 1;
     }
@@ -42,8 +39,6 @@ public class QuestionAnswerController {
         if (responses != null) {
         	String expectedQuestion ="";
         	String expectedAnswer = "";
-        	Long timestamp = System.currentTimeMillis();
-            
         	StringTokenizer result = new StringTokenizer(responses, "*");
         	int count = result.countTokens();
         	 for (int i = 0; i <count; i++) {
@@ -51,11 +46,8 @@ public class QuestionAnswerController {
         			 expectedQuestion = result.nextToken();
         		 else if(i==1)
         			 expectedAnswer = result.nextToken();
-        		 else if(i==2)
-        			 timestamp = Long.parseLong(result.nextToken());
         	 } 
-        	 if (expectedQuestion.equals(question) && expectedAnswer.equals(answer) &&
-                     (System.currentTimeMillis() - timestamp < TIMEOUT)) {
+        	 if (expectedQuestion.equals(question) && expectedAnswer.equals(answer)) {
                      return new ResponseEntity<>(JSONObject.quote("Correct Answer"), HttpStatus.OK);
                  }
                   
