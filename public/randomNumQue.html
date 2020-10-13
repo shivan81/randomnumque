@@ -54,7 +54,8 @@ function validateCaptcha() {
   event.preventDefault();
   debugger
   if (document.getElementById("cpatchaTextBox").value == code) {
-     document.getElementById("form").submit();
+    alert("Valid Captcha")
+     document.getElementById("questionAnswerform").submit();
   }else{
     alert("Invalid Captcha. try Again");
     createCaptcha();
@@ -64,7 +65,7 @@ function validateCaptcha() {
 	</script>
 </head>
 <body onload="createCaptcha()">
-	<form id="form" action="/" method="GET" onsubmit="validateCaptcha()">
+	<form id="questionAnswerform" action="/" method="GET" onsubmit="validateCaptcha()">
 	<div id="captcha">
     </div>
     <input type="text" placeholder="Captcha" id="cpatchaTextBox"/>
@@ -79,7 +80,7 @@ function validateCaptcha() {
 var xmlHttpRequest = new XMLHttpRequest();
 xmlHttpRequest.onload = function(e) {
 	var json = JSON.parse(xmlHttpRequest.responseText);
-	var elementsList = document.getElementById("form").elements;
+	var elementsList = document.getElementById("questionAnswerform").elements;
 	elementsList.namedItem("responses").value = json.responses;
 	elementsList.namedItem("question").value = json.question;
 }
